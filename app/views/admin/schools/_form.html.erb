@@ -1,0 +1,33 @@
+<%= form_with model: [:admin, @school], class: "space-y-6" do |f| %>
+
+  <div>
+    <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :name,
+        class: "mt-1 w-full rounded border-gray-300 focus:border-indigo-500 focus:ring-indigo-500", required: true %>
+  </div>
+
+  <div>
+    <%= f.label :address, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :address,
+        class: "mt-1 w-full rounded border-gray-300 focus:border-indigo-500 focus:ring-indigo-500", required: true %>
+  </div>
+
+  <div>
+    <%= f.label :school_admin_id, "School Admin", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.collection_select :school_admin_id,
+        User.school_admin,
+        :id,
+        :name,
+        prompt: "Select School Admin",
+        class: "mt-1 w-full rounded border-gray-300", required: true %>
+  </div>
+
+  <div class="flex gap-4">
+    <%= f.submit class: "bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition" %>
+
+    <%= link_to "Cancel",
+        admin_schools_path,
+        class: "px-6 py-2 rounded border border-gray-300 text-gray-700 hover:bg-gray-50" %>
+  </div>
+
+<% end %>

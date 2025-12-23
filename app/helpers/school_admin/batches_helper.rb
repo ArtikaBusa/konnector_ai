@@ -1,0 +1,2 @@
+module SchoolAdmin::BatchesHelper
+end

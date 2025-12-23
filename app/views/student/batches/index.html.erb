@@ -1,0 +1,54 @@
+<h1 class="text-2xl font-semibold mb-6">Available Batches</h1>
+
+<table class="w-full bg-white shadow rounded">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="p-3">Batch</th>
+      <th class="p-3">Course</th>
+      <th class="p-3">School</th>
+      <th class="p-3">Status</th>
+      <th class="p-3">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @batches.each do |batch| %>
+      <% enrollment = Enrollment.find_by(
+           user_id: current_user.id,
+           batch_id: batch.id
+         ) %>
+
+      <tr class="border-t">
+        <td class="p-3"><%= batch.name %></td>
+        <td class="p-3"><%= batch.course.name %></td>
+        <td class="p-3"><%= batch.course.school.name %></td>
+
+        <td class="p-3">
+          <% if enrollment %>
+            <span class="capitalize"><%= enrollment.status %></span>
+          <% else %>
+            Not requested
+          <% end %>
+        </td>
+
+        <td class="p-3">
+          <% if enrollment.nil? %>
+            <%= button_to "Request Enrollment",
+                  enroll_student_batch_path(batch),
+                  method: :post,
+                  class: "bg-indigo-600 text-white px-3 py-1 rounded" %>
+
+          <% elsif enrollment.pending_status? %>
+            <span class="text-yellow-600">Pending</span>
+
+          <% elsif enrollment.approved_status? %>
+            <span class="text-green-600">Approved</span>
+
+          <% else %>
+            <span class="text-red-600">Rejected</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

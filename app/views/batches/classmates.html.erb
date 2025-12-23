@@ -1,0 +1,26 @@
+<h1 class="text-xl font-semibold mb-4">My Classmates</h1>
+
+<table class="w-full bg-white rounded shadow">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-left">Name</th>
+      <th class="px-4 py-2 text-left">Progress</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr class="border-t">
+        <td class="px-4 py-2"><%= student.name %></td>
+        <td class="px-4 py-2">
+          <div class="w-full bg-gray-200 rounded">
+            <div
+              class="bg-green-500 text-xs text-white text-center rounded"
+              style="width: <%= student.progress_percentage || 0 %>%">
+              <%= student.progress_percentage || 0 %>%
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

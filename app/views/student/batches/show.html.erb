@@ -1,0 +1,22 @@
+<h1 class="text-xl font-semibold mb-4">
+  <%= @batch.name %> — Classmates
+</h1>
+
+<table class="w-full bg-white shadow rounded">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="p-3">Student</th>
+      <th class="p-3">Progress</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @classmates.each do |student| %>
+      <tr class="border-t">
+        <td class="p-3"><%= student.name %></td>
+        <td class="p-3">
+          <%= @progresses[student.id]&.completion_percentage || 0 %>%
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

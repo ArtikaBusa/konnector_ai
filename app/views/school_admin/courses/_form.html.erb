@@ -1,0 +1,8 @@
+<%= form_with model: [:school_admin, course], local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, class: "block font-medium" %>
+    <%= f.text_field :name, class: "border rounded w-full px-3 py-2" %>
+  </div>
+
+  <%= f.submit class: "bg-indigo-600 text-white px-4 py-2 rounded" %>
+<% end %>

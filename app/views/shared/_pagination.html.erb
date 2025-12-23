@@ -1,0 +1,23 @@
+<% if paginated.respond_to?(:total_pages) && paginated.total_pages > 1 %>
+  <div class="mt-6 flex justify-center">
+    <nav class="inline-flex space-x-1">
+      <% if paginated.prev_page %>
+        <%= link_to "Prev",
+            url_for(page: paginated.prev_page),
+            class: "px-3 py-1 border rounded hover:bg-gray-100" %>
+      <% end %>
+
+      <% (1..paginated.total_pages).each do |page| %>
+        <%= link_to page,
+            url_for(page: page),
+            class: "px-3 py-1 border rounded #{page == paginated.current_page ? 'bg-indigo-600 text-white' : 'hover:bg-gray-100'}" %>
+      <% end %>
+
+      <% if paginated.next_page %>
+        <%= link_to "Next",
+            url_for(page: paginated.next_page),
+            class: "px-3 py-1 border rounded hover:bg-gray-100" %>
+      <% end %>
+    </nav>
+  </div>
+<% end %>

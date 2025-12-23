@@ -1,0 +1,2 @@
+module SchoolAdmin::CoursesHelper
+end

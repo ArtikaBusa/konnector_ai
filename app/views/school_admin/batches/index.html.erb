@@ -1,0 +1,54 @@
+<div class="flex justify-between items-center mb-6">
+  <h1 class="text-2xl font-semibold">Batches</h1>
+
+  <%= link_to "New Batch",
+        new_school_admin_course_batch_path(@course),
+        class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+</div>
+
+<div class="bg-white shadow rounded overflow-hidden">
+  <table class="w-full text-left">
+    <thead class="bg-gray-100 border-b">
+      <tr>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Start Date</th>
+        <th class="px-4 py-2">End Date</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @batches.each do |batch| %>
+        <tr class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2"><%= batch.name %></td>
+          <td class="px-4 py-2"><%= batch.start_date %></td>
+          <td class="px-4 py-2"><%= batch.end_date %></td>
+          <td class="px-4 py-2 space-x-2">
+
+
+            <%= link_to "View",
+              school_admin_course_batch_path(@course, batch),
+              class: "text-indigo-600 hover:underline" %>
+
+
+            <%= link_to "Edit",
+                  edit_school_admin_course_batch_path(@course, batch),
+                  class: "text-blue-600 hover:underline" %>
+
+            <%= button_to "Delete",
+                  school_admin_course_batch_path(@course, batch),
+                  method: :delete,
+                  data: { turbo_confirm: "Are you sure?" },
+                  class: "text-red-600 hover:underline bg-transparent border-none p-0 inline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if @batches.empty? %>
+    <div class="p-4 text-gray-500 text-center">
+      No batches found.
+    </div>
+  <% end %>
+</div>

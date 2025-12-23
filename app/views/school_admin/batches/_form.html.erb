@@ -1,0 +1,18 @@
+<%= form_with model: [:school_admin, @course, @batch], local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, class: "block font-medium mb-1" %>
+    <%= f.text_field :name, class: "w-full border rounded px-3 py-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :start_date, class: "block font-medium mb-1" %>
+    <%= f.date_field :start_date, class: "w-full border rounded px-3 py-2" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :end_date, class: "block font-medium mb-1" %>
+    <%= f.date_field :end_date, class: "w-full border rounded px-3 py-2" %>
+  </div>
+
+  <%= f.submit class: "bg-indigo-600 text-white px-4 py-2 rounded" %>
+<% end %>

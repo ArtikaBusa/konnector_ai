@@ -1,0 +1,19 @@
+<div class="bg-white p-6 rounded-lg shadow max-w-2xl">
+  <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+    <%= @school.name %>
+  </h2>
+
+  <p class="text-gray-600 mb-4">
+    <strong>Address:</strong> <%= @school.address %>
+  </p>
+
+  <div class="flex gap-4">
+    <%= link_to "Edit",
+        edit_admin_school_path(@school),
+        class: "bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700" %>
+
+    <%= link_to "Back",
+        admin_schools_path,
+        class: "px-4 py-2 border rounded text-gray-700 hover:bg-gray-50" %>
+  </div>
+</div>
